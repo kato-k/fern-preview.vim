@@ -104,12 +104,18 @@ function! fern_preview#close() abort
 endfunction
 
 function! fern_preview#half_down() abort
+  if s:win.is_visible()
+    return
+  endif
   let winid = s:win.get_winid()
   let info = s:Window.info(winid)
   call s:Window.scroll(winid, info.topline + info.height / 2)
 endfunction
 
 function! fern_preview#half_up() abort
+  if s:win.is_visible()
+    return
+  endif
   let winid = s:win.get_winid()
   let info = s:Window.info(winid)
   call s:Window.scroll(winid, info.topline - info.height / 2)
