@@ -12,6 +12,10 @@ else
   call s:win.set_var('&wincolor', 'Normal')
 endif
 
+function! fern_preview#is_win_visible() abort
+  return s:win.is_visible()
+endfunction
+
 function! fern_preview#smart_preview(preview, non_preview) abort
   if s:win.is_visible()
     return a:preview
@@ -104,7 +108,7 @@ function! fern_preview#close() abort
 endfunction
 
 function! fern_preview#half_down() abort
-  if s:win.is_visible()
+  if !s:win.is_visible()
     return
   endif
   let winid = s:win.get_winid()
@@ -113,7 +117,7 @@ function! fern_preview#half_down() abort
 endfunction
 
 function! fern_preview#half_up() abort
-  if s:win.is_visible()
+  if !s:win.is_visible()
     return
   endif
   let winid = s:win.get_winid()
